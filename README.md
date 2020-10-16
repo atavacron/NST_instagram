@@ -1,6 +1,6 @@
 # NST INSTAGRAM
-This app integrates Google Drive API, Tensorflow and Instagram Bot to automatically extract images from Google Drive folder, specifically paintings and your own pictures so we can train a **Neural Style Transfer** algorithm and upload pictures on Instagram, scheduled by cron.
-Thoug is cool to have your NST photos uploaded to Instagram the main goal of this app is to store data on best hyperparameters (using logs.csv file).
+This app integrates Google Drive API, Tensorflow and Instagram Bot to automatically extract images from Google Drive folder, specifically paintings and your own pictures so we can train a **Neural Style Transfer** algorithm and upload pictures on Instagram, scheduled by crontab.
+Just as a parenthesis, thoug is cool to have your NST photos uploaded to Instagram, the **main goal of this app is to store data on best hyperparameters** (using logs.csv file).
 
 <p align="center">
   <img src="pipeline.png" />
@@ -20,7 +20,7 @@ The loss function contains a term for content and a term for style. Strong style
 For more information visit this [paper](https://arxiv.org/pdf/1508.06576.pdf)
 
 ## Structure of the application and how to use
-You need python 3 and all the requirements installed from the requirements.txt. In order to run this script scheduled you will need Linux distro plus to folders created on the same path as your neural_style_transfer.py:
+You need python 3 and all the requirements installed from the requirements.txt. In order to run this script scheduled you will need a Linux distro plus two folders created under a prd (or change script on both python (.py) files):
 * output: Here final images 1080x1080 will be stored. Should also create output_log folder. The latter is a folder to store a 300x300 images from every 100 steps (1 epoch).
 * prod_folder: Here the images from Google Drive will be stored.
 You should also need to create a file such as style_name.json, with Google Drive name of the style picture as key and the name of the painting and style, that will be uploaded as the caption of the photo on Instagram.
@@ -28,6 +28,16 @@ You should also need to create a file such as style_name.json, with Google Drive
 ## Instagram Bot 
 Instabot is being used, this easily upload photos just add you `username` and `password` to the script. <br>
 I would definitely recommend you check all the scripts used when you use passwords in scripts, since your information might be stolen.
+
+## Setting crontab jobs on linux
+Type `sudo crontab -e` and select your editor. The add the follwing line: 1 2 3 4 5 /path/to/script, just remember to change the path script to teh bash file **run_neural_style_transfer.sh**. I am running daily scripts, but probably you want to run hourly, so here are the rules for crontab scheduling:<br>
+* 1: Minutes (0-59)
+* 2: Hours (0-23)
+* 3: Days (1-31)
+* 4: Month (1-12)
+* 5: Day of the week(1-7)
+<br>
+For example I want it to be run daily at 6pm. Then I shall write this `0 18 * * * run_neural_style_transfer.sh` In case the latter file on home. Remember to save and exit.
 
 ## Next Steps and how you can improve the app.
 Fork the code, make the modifications and do a Pull Request, specifically on:
