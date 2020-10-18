@@ -244,7 +244,7 @@ def main():
     start = time.time()
     epochs = random_selection("epochs")
     steps_per_epoch = 100
-    #print(final_caption(caption, lr, beta1, epochs, style_weight, content_weight, content_layer, style_layers))
+    print(final_caption(caption, lr, beta1, epochs, style_weight, content_weight, content_layer, style_layers))
 
     @tf.function()
     def train_step(image):
@@ -290,9 +290,10 @@ def main():
         image_from_tensor.save(output_path) 
     
     #perform instagram manipulation 
-    username = "your user name"
-    password = "your instagram password"
+    username = "username"
+    password = "password"
     if upload:
+        pass
         bot = Bot()
         bot.login(username = username, password = password)
         bot.upload_photo(output_path, caption = final_caption(caption, lr, beta1, epochs, style_weight, content_weight, content_layer, style_layers))
@@ -320,6 +321,14 @@ def main():
     print("Files Removed!")
     if upload == False:
         raise TypeError("nan or inf in tensor")
+    else:
+        upload = True
+    return(upload)
 
 if __name__ == '__main__':
-    main()
+    val = False
+    while val == False:
+        try:
+            val = main()
+        except:
+            val = False
