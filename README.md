@@ -1,9 +1,12 @@
 # NST INSTAGRAM
+<p align="center">
+  <img src="images/examples.png" />
+</p>
 This app integrates Google Drive API, Tensorflow and Instagram Bot to automatically extract images from Google Drive folder, specifically paintings and your own pictures so we can train a **Neural Style Transfer** algorithm and upload pictures on Instagram, scheduled by crontab.
 Just as a parenthesis, thoug is cool to have your NST photos uploaded to Instagram, the **main goal of this app is to store data on best hyperparameters** (using logs.csv file).
 
 <p align="center">
-  <img src="pipeline.png" />
+  <img src="images/pipeline.png" />
 </p>
 
 # Connecting with Google Drive
@@ -42,7 +45,7 @@ For example I want it to be run daily at 6pm. Then I shall write this `0 18 * * 
 ## Next Steps and how you can improve the app.
 Fork the code, make the modifications and do a Pull Request, specifically on:
 * Make sure images are not rotated, either code base or implement a whole deep learning module for image rotation detection (which might not be needed but cool to implement).
-* Containerize the application, so would be easier to deploy on the cloud.
+* Improve containerization of the application, so would be easier to deploy on the cloud, test for vulnerabilities.
 * Request more logs.csv data to find the right hyperparameters. My first intuition was using DRL to make hyperparameter optimization.
 * Add an ofline module or/and deploy the model you have found to have the right hyperparameters.
 * Send your logs.csv information.
